@@ -7,19 +7,22 @@ import TopMovies from "../pages/TopMovies";
 import FavoriteMovies from "../pages/FavoriteMovies";
 import MovieDetails from "../pages/MovieDetails";
 import AuthContextProvider from "../context/AuthContext";
+import MovieContextProvider from "../context/MovieContext";
 
 const AppRouter = () => {
   return (
     <AuthContextProvider>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/details/:id" element={<MovieDetails />} />
-        <Route path="/top-movies" element={<TopMovies />} />
-        <Route path="/favorites" element={<FavoriteMovies />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
+      <MovieContextProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/details/:id" element={<MovieDetails />} />
+          <Route path="/top-movies" element={<TopMovies />} />
+          <Route path="/favorites" element={<FavoriteMovies />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </MovieContextProvider>
     </AuthContextProvider>
   );
 };
