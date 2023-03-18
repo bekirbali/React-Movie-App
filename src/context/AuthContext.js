@@ -32,7 +32,7 @@ const AuthContextProvider = ({ children }) => {
         displayName: displayName,
       });
       console.log(user.displayName);
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.error(error.message);
     }
