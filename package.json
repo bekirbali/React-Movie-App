@@ -45,5 +45,8 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.2.7"
+  },
+  "resolutions": {
+    "resolve-url-loader": "5.0.0"
   }
 }
