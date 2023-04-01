@@ -11,7 +11,11 @@ const Home = () => {
       {loading ? (
         <h1>Loading...</h1>
       ) : (
-        movies?.results?.map((movie) => <MovieCard key={movie.id} {...movie} />)
+        <div className="flex flex-wrap justify-around">
+          {movies?.results?.map((movie) => (
+            <MovieCard key={movie.id} {...movie} />
+          ))}
+        </div>
       )}
     </>
   );
