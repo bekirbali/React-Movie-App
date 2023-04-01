@@ -17,7 +17,6 @@ export const useAuthContext = () => {
 
 const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState("");
-  console.log(currentUser);
   const navigate = useNavigate();
   useEffect(() => {
     observeUser();

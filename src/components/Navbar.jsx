@@ -1,8 +1,19 @@
 import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
+import { useMovieContext } from "../context/MovieContext";
+import avatar from "../assets/icons/avatar.png";
+import FavComp from "./FavComp";
 
 const Navbar = () => {
   const { currentUser, logoutUser } = useAuthContext();
+  const { favorites } = useMovieContext();
+  const { getMovies } = useMovieContext();
+  const apiKey = process.env.REACT_APP_TMDB_ApiKey;
+  const apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&page=1`;
+  const getFullMovies = () => {
+    getMovies(apiUrl);
+  };
+  const fav = favorites.length;
   return (
     <>
       <nav
@@ -42,6 +53,7 @@ const Navbar = () => {
             <NavLink
               className="pr-2 text-xl font-semibold text-white flex justify-end items-center "
               to="/"
+              onClick={getFullMovies}
             >
               Fragmania
             </NavLink>
@@ -62,7 +74,7 @@ const Navbar = () => {
               {/* user && username */}
             </div>
             <div className="relative flex gap-2" data-te-dropdown-ref>
-              <h5>{currentUser && currentUser}</h5>
+              <h5>{currentUser ? currentUser : "Guest"}</h5>
               <NavLink
                 className="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
                 id="dropdownMenuButton2"
@@ -71,7 +83,7 @@ const Navbar = () => {
                 aria-expanded="false"
               >
                 <img
-                  src="https://tecdn.b-cdn.net/img/new/avatars/2.jpg"
+                  src={currentUser?.photoURL || avatar}
                   className="rounded-full"
                   style={{ height: "25px", width: "25px" }}
                   alt=""
@@ -92,7 +104,7 @@ const Navbar = () => {
                         to="/favorites"
                         data-te-dropdown-item-ref
                       >
-                        Favorites
+                        <FavComp fav={fav} />
                       </NavLink>
                     </li>
                     <li>
@@ -134,7 +146,7 @@ const Navbar = () => {
           {/* Right Elements */}
         </div>
       </nav>
-      <div className="h-[30px]"></div>
+      {/* <div className="h-[30px]"></div> */}
     </>
   );
 };

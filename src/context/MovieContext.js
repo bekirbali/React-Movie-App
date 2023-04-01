@@ -13,15 +13,37 @@ const apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&la
 const MovieContextProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("favorites")) || []
+  );
+
+  const addToFavorites = (movie) => {
+    let isFavorite = favorites.some((item) => item.id === movie.id);
+    if (isFavorite) {
+      let newFavorites = favorites.filter((item) => item.id !== movie.id);
+      setFavorites(newFavorites);
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    } else {
+      let newFavorites = [...favorites, movie];
+      setFavorites(newFavorites);
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    }
+  };
+
   const getMovies = async (api) => {
-    const { data } = await axios(api);
-    setMovies(data);
+    try {
+      const { data } = await axios(api);
+      setMovies(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
   useEffect(() => {
     getMovies(apiUrl);
-    setLoading(false);
   }, []);
-  const values = { movies, setMovies, loading };
+  const values = { movies, getMovies, loading, addToFavorites, favorites };
   return (
     <MovieContext.Provider value={values}>{children}</MovieContext.Provider>
   );

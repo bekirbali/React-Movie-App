@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./MovieCard.module.scss";
+import FavIcon from "../assets/icons/FavIcon";
+import { useMovieContext } from "../context/MovieContext";
 
 const MovieCard = ({
   original_title,
@@ -8,7 +10,10 @@ const MovieCard = ({
   vote_average,
   poster_path,
   id,
+  title,
 }) => {
+  const { addToFavorites, favorites } = useMovieContext();
+  const isFavorite = favorites.some((item) => item.id === id);
   const navigate = useNavigate();
   const bgColor = (vote) => {
     if (vote >= 8) {
@@ -19,13 +24,20 @@ const MovieCard = ({
       return "red";
     }
   };
-  console.log(bgColor(vote_average) === "yellow");
   return (
     <div className={styles.main}>
       <div
         className={`${styles["book"]} relative w-[300px]  text-white`}
         onClick={() => navigate(`/details/${id}`, { state: original_title })}
       >
+        <FavIcon
+          className="absolute bottom-2 right-2 w-6 h-6 hover:scale-110 hover:cursor-pointer text-white"
+          onClick={(e) => {
+            e.stopPropagation();
+            addToFavorites({ title, poster_path, overview, vote_average, id });
+          }}
+          isFavorite={isFavorite}
+        />
         <img
           src={`https://image.tmdb.org/t/p/original/${poster_path}`}
           alt=""
