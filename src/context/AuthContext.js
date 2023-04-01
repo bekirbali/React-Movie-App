@@ -21,17 +21,14 @@ const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
   useEffect(() => {
     observeUser();
-  }, []);
+  }, [currentUser]);
   // ! SIGN UP
   const createUser = async (email, password, displayName) => {
     try {
-      let user = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(user);
-      console.log(displayName);
-      updateProfile(auth.currentUser, {
+      await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(auth.currentUser, {
         displayName: displayName,
       });
-      console.log(user.displayName);
       navigate("/login");
     } catch (error) {
       console.error(error.message);
@@ -44,6 +41,7 @@ const AuthContextProvider = ({ children }) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
+      observeUser();
     } catch (error) {
       console.error(error.message);
     }
@@ -51,8 +49,8 @@ const AuthContextProvider = ({ children }) => {
 
   const logoutUser = async () => {
     signOut(auth);
-    navigate("/login");
     setCurrentUser("");
+    navigate("/login");
   };
 
   const observeUser = async () => {
