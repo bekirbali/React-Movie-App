@@ -48,8 +48,8 @@ const MovieCard = ({
           {overview}
         </p>
       </div>
-      <div className="cursor-default flex justify-center items-center gap-2">
-        {original_title}{" "}
+      <div className="cursor-default flex flex-col justify-center gap-2 w-3/4 items-center  ">
+        <p className="line-clamp-1">{original_title}</p>{" "}
         <h2
           style={{
             backgroundColor: `${bgColor(vote_average)}`,
@@ -62,7 +62,7 @@ const MovieCard = ({
             textAlign: "center",
           }}
         >
-          {vote_average}
+          {vote_average.toFixed(1)}
         </h2>
       </div>
     </div>

@@ -2,7 +2,8 @@ import { useState } from "react";
 import MovieCard from "../components/MovieCard";
 import { useMovieContext } from "../context/MovieContext";
 import { useAuthContext } from "../context/AuthContext";
-import { toastWarnNotify } from "../helpers/ToastNotify";
+import { toastSuccessNotify, toastWarnNotify } from "../helpers/ToastNotify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");

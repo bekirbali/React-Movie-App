@@ -1,5 +1,6 @@
 import "./App.scss";
 import AppRouter from "./router/AppRouter";
+
 const App = () => {
   return (
     <div className="App">

@@ -8,6 +8,7 @@ import FavoriteMovies from "../pages/FavoriteMovies";
 import MovieDetails from "../pages/MovieDetails";
 import AuthContextProvider from "../context/AuthContext";
 import MovieContextProvider from "../context/MovieContext";
+import { ToastContainer } from "react-toastify";
 
 const AppRouter = () => {
   return (
@@ -22,6 +23,7 @@ const AppRouter = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
+        <ToastContainer />
       </MovieContextProvider>
     </AuthContextProvider>
   );
