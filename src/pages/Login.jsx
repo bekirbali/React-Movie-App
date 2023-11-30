@@ -22,7 +22,7 @@ const Register = () => {
             <div className="relative z-0 w-full mb-6 group">
               <input
                 name="floating_email"
-                className="peer"
+                className="peer p-2"
                 type="email"
                 placeholder=" "
                 required
@@ -33,7 +33,7 @@ const Register = () => {
             <div className="relative z-0 w-full mb-6 group">
               <input
                 name="floating_password"
-                className="peer"
+                className="peer p-2"
                 type="password"
                 placeholder=" "
                 required
