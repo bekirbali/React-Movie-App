@@ -17,6 +17,7 @@
     "reveal-on-scroll-react": "^0.0.6",
     "sass": "^1.59.3",
     "tw-elements": "^1.0.0-beta1",
+    "tw-elements-react": "^1.0.0-alpha2",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
