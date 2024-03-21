@@ -8,9 +8,9 @@ const Register = () => {
   const { signInUser } = useAuthContext();
   const submitHandler = (e) => {
     e.preventDefault();
-
     signInUser(email, password);
   };
+
   return (
     <div className="flex justify-center">
       <div className="overflow-hidden flex-1 h-[calc(100vh-52px)] justify-center items-center dark:bg-gray-dark-main">

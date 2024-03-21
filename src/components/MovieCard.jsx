@@ -49,7 +49,7 @@ const MovieCard = ({
         </p>
       </div>
       <div className="cursor-default flex flex-col justify-center gap-2 w-3/4 items-center  ">
-        <p className="line-clamp-1">{original_title}</p>{" "}
+        <p className="line-clamp-1 text-slate-800">{original_title}</p>{" "}
         <h2
           style={{
             backgroundColor: `${bgColor(vote_average)}`,

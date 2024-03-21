@@ -50,6 +50,7 @@ const AuthContextProvider = ({ children }) => {
     signOut(auth);
     setCurrentUser("");
     navigate("/login");
+    window.location.reload();
   };
 
   const observeUser = async () => {
